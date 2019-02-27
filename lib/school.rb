@@ -1,32 +1,27 @@
-
-class School
+class School 
   attr_reader :name
   attr_accessor :roster
-
   def initialize(name)
     @name = name
     @roster = {}
-  end
-
+  end 
+  
   def add_student(student_name, grade)
-    if @roster[grade] == nil
-      @roster[grade] = []
+    if @roster.keys.include?(grade)
       @roster[grade] << student_name
     else
+      @roster[grade] = []
       @roster[grade] << student_name
-    end
+    end 
+  end 
+  
+  def grade(num)
+    @roster[num]
   end
-
-  def grade(grade_num)
-    @roster[grade_num]
-  end
-
+  
   def sort
-    new_hash = {}
-    @roster.each do |num, arr|
-      sorted = arr.sort
-      new_hash[num] = sorted
+    @roster.each do |key, value|
+      @roster[key] = value.sort
     end
-    new_hash
   end
 end
